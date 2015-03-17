@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,6 +17,8 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import java.sql.*;
+
 public class PartsListView extends JFrame implements PartInventoryObserver {
 	private static final long serialVersionUID = 1L;
 	private JList list;
@@ -35,15 +35,22 @@ public class PartsListView extends JFrame implements PartInventoryObserver {
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 2));
-		JButton button = new JButton("Add Part");
+		JButton button = new JButton("Template Parts");
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PartView v = new PartView(PartsListView.this.invC, null);
-				v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-				v.setSize(400, 200);
-				v.setLocation(500, 100);
-				v.setVisible(true);
+		
+				ItemInventory inv = new ItemInventory();
+				Gateway gateway = new Gateway(inv);
+				gateway.getData();
+				ItemInventoryController invC = new ItemInventoryController(inv);
+				inv.addPart(null, 2, "Part 1", 233, "6t");
+				ItemsListView pView = new ItemsListView(invC, inv);
+				pView.setTitle("Template Parts List");
+				pView.setSize(450, 300);
+				pView.setLocation(400, 0);
+				pView.setVisible(true);
+				inv.registerObserver(pView);
 			}
 		});
 		buttonPanel.add(button);
@@ -78,16 +85,28 @@ public class PartsListView extends JFrame implements PartInventoryObserver {
 		});
 		list.addMouseListener(new MouseAdapter() {
 		    public void mouseClicked(MouseEvent evt) {
+		    	
 		        JList list = (JList)evt.getSource();
 		        if (evt.getClickCount() >= 2) {
-		            int index = list.locationToIndex(evt.getPoint());
-		            Part p = PartsListView.this.invC.getPartByIndex(index);
-					PartView v = new PartView(PartsListView.this.invC, p);
-					p.registerObserver(v);
-					v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-					v.setSize(400, 200);
-					v.setLocation(500, 100);
-					v.setVisible(true);
+		        	
+		        	    int index = list.locationToIndex(evt.getPoint());
+			            Part p = PartsListView.this.invC.getPartByIndex(index);
+						PartView v = new PartView(PartsListView.this.invC, p);
+						p.registerObserver(v);
+						v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+						v.setSize(400, 200);
+						v.setLocation(0, 330);
+						v.setVisible(true);
+					
+		        	
+		//            int index = list.locationToIndex(evt.getPoint());
+		 //           Part p = PartsListView.this.invC.getPartByIndex(index);
+		//			PartView v = new PartView(PartsListView.this.invC, p);
+		//			p.registerObserver(v);
+		//			v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		//			v.setSize(400, 200);
+		//			v.setLocation(500, 100);
+		//			v.setVisible(true);
 		        }
 		    }
 		});
@@ -102,7 +121,7 @@ public class PartsListView extends JFrame implements PartInventoryObserver {
 	public void updateObserver(PartInventory inv) {
 		listModel.clear();
 		for(Part p : inv.getParts())
-			listModel.addElement(p.getPartName());
+			listModel.addElement(p.getVendor());
 		//int i = list.getSelectedIndex();
 		//if(inv.getNumParts() > 0)
 			//list.setSelectedIndex(0);

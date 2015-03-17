@@ -1,7 +1,6 @@
 package Assignment4;
 
 
-
 import java.util.ArrayList;
 
 public class ItemPart {
@@ -13,22 +12,21 @@ public class ItemPart {
 
 	private ArrayList<ItemObserver> observers;
 
-	public ItemPart(int id, String pName, String l, int q) {
-		this(id, pName, l, q, "");
+	public ItemPart(int id, String pName, int q) {
+		this(id, pName, q, "");
 	}
 
-	public ItemPart(int idNum, String pName, String l, int q, String v) {
-		if (pName == null || pName.length() < 1)
-			throw new IllegalArgumentException("Part Name cannot be blank");
+	public ItemPart(int idNum, String pName, int q, String v) {
+	//	if (pName == null || pName.length() < 1)
+	//		throw new IllegalArgumentException("Part Name cannot be blank");
 		if (q < 1)
 			throw new IllegalArgumentException("Quantity cannot be < 1");
-		if (l == null || l.length() < 1)
-			throw new IllegalArgumentException("Location cannot be unknown");
+		
 		id = idNum;
 		partName = pName;
 		vendor = v;
 		quantity = q;
-		location = l;
+
 		observers = new ArrayList<ItemObserver>();
 	}
 
@@ -68,23 +66,16 @@ public class ItemPart {
 		updateObservers();
 	}
 		
-	public String getLocation() {
-		return location;
-	}
 
-	public void setLocation(String location) {
-		this.location = location;
-		updateObservers();
-	}
 	public void registerObserver(ItemObserver o) {
 		observers.add(o);
 	}
 
-	public void setFields(int pId, String pName, String l, int q) {
+	public void setFields(int pId, String pName, int q) {
 		setPartName(pName);
 //		setVendor(v);
 		setQuantity(q);
-		setLocation(l);
+
 		updateObservers();
 	}
 

@@ -1,5 +1,6 @@
 package Assignment4;
 
+
 import java.util.ArrayList;
 
 public class ItemInventory {
@@ -33,19 +34,13 @@ public class ItemInventory {
 		return false;
 	}
 	
-	public boolean checkLocation(String u, ItemPart part){
-		if(u.equals("Unknown")){
-			return true;
-		}
-		return false;
-	}
+
 	
-	public ItemPart addPart(ItemPart part, int id, String pName, String l, int q, String v) throws IllegalArgumentException {
+	public ItemPart addPart(ItemPart part, int id, String pName, int q, String v) throws IllegalArgumentException {
 		if(partNameExists(pName, part))
 			throw new IllegalArgumentException("Part Name already exists!");
-		if(checkLocation(l, part))
-			throw new IllegalArgumentException("Location cannot be Uknown!");
-		ItemPart p = new ItemPart(id, pName, l, q, v);
+
+		ItemPart p = new ItemPart(id, pName, q, v);
 		parts.add(p);
 		updateObservers();
 		return p;
