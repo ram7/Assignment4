@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,8 +17,7 @@ public class PartView extends JFrame implements PartObserver {
 	private JTextField tfPartNum;
 	private JTextField tfPartName;
 	private JTextField tfVendor;
-	private JTextField tfUnOfQty;
-	private JTextField tfExternalNum;
+
 
 	private Part part;
 	private PartInventoryController invC;
@@ -38,25 +35,17 @@ public class PartView extends JFrame implements PartObserver {
 		tfId = new JTextField();
 		panel.add(tfId);
 
-		panel.add(new JLabel("Part #"));
+		panel.add(new JLabel("Product #"));
 		tfPartNum = new JTextField();
 		panel.add(tfPartNum);
 
-		panel.add(new JLabel("Part Name"));
+		panel.add(new JLabel("Product Description"));
 		tfPartName = new JTextField();
 		panel.add(tfPartName);
 
-		panel.add(new JLabel("Vendor"));
-		tfVendor = new JTextField();
-		panel.add(tfVendor);
 
-		panel.add(new JLabel("Unit of Quantity"));
-		tfUnOfQty = new JTextField("Unknown");
-		panel.add(tfUnOfQty);
-		
-		panel.add(new JLabel("External Part #"));
-		tfExternalNum = new JTextField();
-		panel.add(tfExternalNum);
+		tfVendor = new JTextField();
+
 
 		this.add(panel, BorderLayout.CENTER);
 
@@ -68,8 +57,8 @@ public class PartView extends JFrame implements PartObserver {
 			public void actionPerformed(ActionEvent e) {
 
 				Part p = invC.addPart(PartView.this, part, Integer.parseInt(tfId.getText().trim()), tfPartNum.getText(),
-						tfPartName.getText(), tfVendor.getText(),
-						tfUnOfQty.getText(), tfExternalNum.getText());
+						tfPartName.getText(), tfVendor.getText()
+						);
 				if (p != null) {
 					if (part == null) {
 						part = p;
@@ -90,9 +79,8 @@ public class PartView extends JFrame implements PartObserver {
 			tfPartNum.setText(part.getPartNumber());
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
-			tfUnOfQty.setText(part.getUnitQuantity());
-			tfExternalNum.setText(part.getExternalNumber());
-			this.setTitle("Editing " + p.getPartName());
+
+			this.setTitle("Editing " + p.getVendor());
 		} else
 			this.setTitle("Adding new part");
 	}
@@ -109,8 +97,7 @@ public class PartView extends JFrame implements PartObserver {
 			tfPartNum.setText(part.getPartNumber());
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
-			tfUnOfQty.setText(part.getUnitQuantity());
-			tfExternalNum.setText(part.getExternalNumber());
+
 			this.setTitle("Editing " + part.getPartName());
 		}
 	}

@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 public class PartInventoryController {
 	private PartInventory inv;
 	
@@ -25,19 +23,19 @@ public class PartInventoryController {
 		return inv.getNumParts();
 	}
 	
-	public Part addPart(PartView view, Part p, int id, String pNum, String pName, String v, String u, String e) {
+	public Part addPart(PartView view, Part p, int id, String pNum, String pName, String v) {
 		//if p is null then create a new Part
 		//but first validate pName does not already exist
 		if(p == null) {
 			try {
-				return inv.addPart(p, id, pNum, pName, v, u, e);
+				return inv.addPart(p, id, pNum, pName, v);
 			} catch(IllegalArgumentException ex) {
 				view.showError(ex.getMessage());
 			}
 		} else {
 			try {
 				
-				p.setFields(id, pNum, pName, v, u, e);
+				p.setFields(id, pNum, pName, v);
 				inv.updateObservers();
 				return p;
 			} catch(IllegalArgumentException ex) {

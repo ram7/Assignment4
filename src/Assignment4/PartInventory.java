@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 import java.util.ArrayList;
 
 public class PartInventory {
@@ -35,19 +33,13 @@ public class PartInventory {
 		return false;
 	}
 	
-	public boolean checkUnitQuantity(String u, Part part){
-		if(u.equals("Linear Feet") || u.equals("Pieces")){
-			return false;
-		}
-		return true;
-	}
+
 	
-	public Part addPart(Part part, int id, String pNum, String pName, String v, String u, String e) throws IllegalArgumentException {
+	public Part addPart(Part part, int id, String pNum, String pName, String v) throws IllegalArgumentException {
 		if(partNumberExists(pNum, part))
 			throw new IllegalArgumentException("Part Number Already Exists breh!");
-		if(checkUnitQuantity(u, part))
-			throw new IllegalArgumentException("Unit of Quantity cannot be Uknown! Must be set to Linear Feet or Pieces");
-		Part p = new Part(id, pNum, pName, v, u, e);
+	
+		Part p = new Part(id, pNum, pName, v);
 		parts.add(p);
 		updateObservers();
 		return p;

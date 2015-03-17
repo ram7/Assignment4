@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -35,19 +33,19 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 		
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new GridLayout(1, 2));
-		JButton button = new JButton("Add Item");
+		JButton button = new JButton("Add Part");
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				ItemView v = new ItemView(ItemsListView.this.invC, null);
 				v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				v.setSize(400, 200);
-				v.setLocation(500, 100);
+				v.setLocation(400, 330);
 				v.setVisible(true);
 			}
 		});
 		buttonPanel.add(button);
-		button = new JButton("Delete Item");
+		button = new JButton("Delete Part");
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -86,7 +84,7 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 					p.registerObserver(v);
 					v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					v.setSize(400, 200);
-					v.setLocation(500, 100);
+					v.setLocation(850, 0);
 					v.setVisible(true);
 		        }
 		    }

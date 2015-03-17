@@ -17,7 +17,7 @@ public class Gateway {
 					"jdbc:mysql://devcloud.fulgentcorp.com:3306/nqg658",
 					"nqg658","u8Wxz1ncYDHB2NxhyoND");
 			message = connect.createStatement();
-			System.out.println("Connected Successfully to Inventory");
+			System.out.println("Connected Successfully to Template Parts List");
 		} catch (SQLException ex){
 			System.out.println("Error: "+ex);
 		}
@@ -30,7 +30,7 @@ public class Gateway {
 					"jdbc:mysql://devcloud.fulgentcorp.com:3306/nqg658",
 					"nqg658","u8Wxz1ncYDHB2NxhyoND");
 			message = connect.createStatement();
-			System.out.println("Connected Successfully to Parts");
+			System.out.println("Connected Successfully to Templates");
 		} catch (SQLException ex){
 			System.out.println("Error: "+ex);
 		}
