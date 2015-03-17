@@ -1,7 +1,5 @@
 package Assignment4;
 
-
-
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -19,7 +17,6 @@ public class ItemView extends JFrame implements ItemObserver {
 	private JTextField tfPartName;
 	private JTextField tfVendor;
 	private JTextField tfQty;
-	private JTextField tfLocation;
 
 	private ItemPart part;
 	private ItemInventoryController invC;
@@ -33,17 +30,15 @@ public class ItemView extends JFrame implements ItemObserver {
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(4, 2));
 
-		panel.add(new JLabel("Item ID"));
+		panel.add(new JLabel("Product ID"));
 		tfId = new JTextField();
 		panel.add(tfId);
 
-		panel.add(new JLabel("Item Name"));
+		panel.add(new JLabel("Part ID"));
 		tfPartName = new JTextField();
 		panel.add(tfPartName);
 		
-		panel.add(new JLabel("Location"));
-		tfLocation = new JTextField("Unknown");
-		panel.add(tfLocation);
+
 		
 		panel.add(new JLabel("Quantity"));
 		tfQty = new JTextField();
@@ -68,7 +63,7 @@ public class ItemView extends JFrame implements ItemObserver {
 					return;
 				}
 				ItemPart p = invC.addPart(ItemView.this, part, Integer.parseInt(tfId.getText().trim()),
-						tfPartName.getText(), tfLocation.getText(), Integer.parseInt(tfQty.getText().trim()), tfVendor.getText());
+						tfPartName.getText(), Integer.parseInt(tfQty.getText().trim()), tfVendor.getText());
 				if (p != null) {
 					if (part == null) {
 						part = p;
@@ -89,7 +84,6 @@ public class ItemView extends JFrame implements ItemObserver {
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
 			tfQty.setText(Integer.toString(part.getQuantity()));
-			tfLocation.setText(part.getLocation());
 			this.setTitle("Editing " + p.getPartName());
 		} else
 			this.setTitle("Adding new Item");
@@ -107,7 +101,6 @@ public class ItemView extends JFrame implements ItemObserver {
 			tfPartName.setText(part.getPartName());
 			tfVendor.setText(part.getVendor());
 			tfQty.setText(Integer.toString(part.getQuantity()));
-			tfLocation.setText(part.getLocation());
 			this.setTitle("Editing " + part.getPartName());
 		}
 	}
