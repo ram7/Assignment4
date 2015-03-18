@@ -23,14 +23,14 @@ public class PartsListView extends JFrame implements PartInventoryObserver {
 	private static final long serialVersionUID = 1L;
 	private JList list;
 	private DefaultListModel listModel;
-	
+	private Gateway gateway;
 	private PartInventoryController invC;
 	
-	public PartsListView(PartInventoryController invC, PartInventory inv) {
+	public PartsListView(PartInventoryController invC, PartInventory inv, Gateway otherGateway) {
 		//buttons on top (north)
 		//list view center
 		this.invC = invC;
-		
+		this.gateway = otherGateway;
 		this.setLayout(new BorderLayout());
 		
 		JPanel buttonPanel = new JPanel();
@@ -43,9 +43,9 @@ public class PartsListView extends JFrame implements PartInventoryObserver {
 				ItemInventory inv = new ItemInventory();
 				Gateway gateway = new Gateway(inv);
 				gateway.getData();
-				ItemInventoryController invC = new ItemInventoryController(inv);
-				inv.addPart(null, 2, "Part 1", 233, "6t");
-				ItemsListView pView = new ItemsListView(invC, inv);
+				ItemInventoryController invC = new ItemInventoryController(inv); 
+//				inv.addPart(null, 2, "Part 1", 233, "6t");
+				ItemsListView pView = new ItemsListView(invC, inv, gateway); // pass the gateway here. look in itemslistview
 				pView.setTitle("Template Parts List");
 				pView.setSize(450, 300);
 				pView.setLocation(400, 0);

@@ -2,13 +2,20 @@ package Assignment4;
 
 import java.sql.*;
 
-public class Gateway {
+public class Gateway{
 
-	private Connection connect;
-	private Statement message;
-	private ResultSet results;
+	private Connection connect = null;
+	private Statement message = null;
+	private ResultSet results = null;
 	private ItemInventory itemView;
 	private PartInventory partView;
+	private String insertItemRow = "INSERT INTO Template_Parts"
+			+ "(ID, Part_Number, Part_Name, Quantity) VALUES" 
+			+ "(?, ?, ?, ?)";
+	private String updateItemRow = "UPDATE Template_Parts SET"
+			+ "Part_Number = ?, Part_Name = ?, Quantity = ?" 
+			+ "WHERE ID = ?";
+	
 	
 	public Gateway(ItemInventory iView){
 		this.itemView = iView;
@@ -68,5 +75,31 @@ public class Gateway {
 		}
 	}
 	
+	public void addPartDB(int id, String partName, String vendor, int quantity){
+		try{
+			message = connect.prepareStatement(insertItemRow);
+			message.setInt(1, id);
+			message.setString(2, partName);
+			message.setString(3, vendor);
+			message.setInt(4, quantity);
+			message.executeUpdate();
+			message.close();
+		} catch (SQLException ex){
+			System.out.println("Error: "+ex);
+		}
+	}
 
+	public void updatePartDB(int id, String partName, String vendor, int quantity){
+		try{
+			message = connect.prepareStatement(updateItemRow);
+			message.setInt(1, id);
+			message.setString(2, partName);
+			message.setString(3, vendor);
+			message.setInt(4, quantity);
+			message.executeUpdate();
+			message.close();
+		} catch (SQLException ex){
+			System.out.println("Error: "+ex);
+		}
+	}
 }

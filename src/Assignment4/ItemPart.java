@@ -3,13 +3,13 @@ package Assignment4;
 
 import java.util.ArrayList;
 
-public class ItemPart {
+public class ItemPart{
 	private int id;
 	private String partName;
 	private String location;
 	private int quantity;
 	private String vendor;
-
+	private Gateway gateway;
 	private ArrayList<ItemObserver> observers;
 
 	public ItemPart(int id, String pName, int q) {
@@ -26,7 +26,8 @@ public class ItemPart {
 		partName = pName;
 		vendor = v;
 		quantity = q;
-
+		gateway.addPartDB(id, partName, vendor, quantity);
+		gateway.updatePartDB(id, partName, vendor, quantity);
 		observers = new ArrayList<ItemObserver>();
 	}
 

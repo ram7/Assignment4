@@ -17,14 +17,15 @@ public class ItemView extends JFrame implements ItemObserver {
 	private JTextField tfPartName;
 	private JTextField tfVendor;
 	private JTextField tfQty;
-
+	private Gateway gateway;
 	private ItemPart part;
 	private ItemInventoryController invC;
 
-	public ItemView(ItemInventoryController i, ItemPart p) {
+	public ItemView(ItemInventoryController i, ItemPart p, Gateway otherGateway) {
 		part = p;
 		invC = i;
-
+		
+		this.gateway = otherGateway;
 		this.setLayout(new BorderLayout());
 
 		JPanel panel = new JPanel();

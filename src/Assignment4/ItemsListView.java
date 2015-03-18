@@ -21,14 +21,14 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 	private static final long serialVersionUID = 1L;
 	private JList list;
 	private DefaultListModel listModel;
-	
+	private Gateway gateway;
 	private ItemInventoryController invC;
 	
-	public ItemsListView(ItemInventoryController invC, ItemInventory inv) {
+	public ItemsListView(ItemInventoryController invC, ItemInventory inv, Gateway otherGateway) {
 		//buttons on top (north)
 		//list view center
 		this.invC = invC;
-		
+		this.gateway = otherGateway;
 		this.setLayout(new BorderLayout());
 		
 		JPanel buttonPanel = new JPanel();
@@ -37,7 +37,7 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ItemView v = new ItemView(ItemsListView.this.invC, null);
+				ItemView v = new ItemView(ItemsListView.this.invC, null, gateway); // pass the gateway here. look in itemspart
 				v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 				v.setSize(400, 200);
 				v.setLocation(400, 330);
@@ -80,7 +80,7 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 		        if (evt.getClickCount() >= 2) {
 		            int index = list.locationToIndex(evt.getPoint());
 		            ItemPart p = ItemsListView.this.invC.getPartByIndex(index);
-					ItemView v = new ItemView(ItemsListView.this.invC, p);
+					ItemView v = new ItemView(ItemsListView.this.invC, p, gateway);
 					p.registerObserver(v);
 					v.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 					v.setSize(400, 200);

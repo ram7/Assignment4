@@ -12,11 +12,10 @@ public class ProjectMain {
 		Gateway gateway = new Gateway(inv2);
 		gateway.getData();
 
-
 		PartInventoryController invC2 = new PartInventoryController(inv2);
 
 		// views
-		PartsListView pView2 = new PartsListView(invC2, inv2);
+		PartsListView pView2 = new PartsListView(invC2, inv2, gateway);
 		pView2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pView2.setTitle("Templates");
 		pView2.setSize(400, 300);

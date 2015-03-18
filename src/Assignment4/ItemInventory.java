@@ -42,6 +42,7 @@ public class ItemInventory {
 
 		ItemPart p = new ItemPart(id, pName, q, v);
 		parts.add(p);
+
 		updateObservers();
 		return p;
 	}
