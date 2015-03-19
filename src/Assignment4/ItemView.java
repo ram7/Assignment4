@@ -29,17 +29,15 @@ public class ItemView extends JFrame implements ItemObserver {
 		this.setLayout(new BorderLayout());
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(4, 2));
+		panel.setLayout(new GridLayout(3, 2));
 
 		panel.add(new JLabel("Product ID"));
 		tfId = new JTextField();
 		panel.add(tfId);
 
-		panel.add(new JLabel("Part ID"));
+		panel.add(new JLabel("Part Name"));
 		tfPartName = new JTextField();
 		panel.add(tfPartName);
-		
-
 		
 		panel.add(new JLabel("Quantity"));
 		tfQty = new JTextField();
@@ -87,7 +85,7 @@ public class ItemView extends JFrame implements ItemObserver {
 			tfQty.setText(Integer.toString(part.getQuantity()));
 			this.setTitle("Editing " + p.getPartName());
 		} else
-			this.setTitle("Adding new Item");
+			this.setTitle("Adding New Item");
 	}
 
 	public void showError(String msg) {

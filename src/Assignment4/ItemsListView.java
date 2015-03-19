@@ -106,4 +106,3 @@ public class ItemsListView extends JFrame implements ItemInventoryObserver {
 			//list.setSelectedIndex(0);
 	}
 }
-

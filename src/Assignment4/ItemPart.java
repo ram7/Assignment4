@@ -28,6 +28,8 @@ public class ItemPart{
 		quantity = q;
 		gateway.addPartDB(id, partName, vendor, quantity);
 		gateway.updatePartDB(id, partName, vendor, quantity);
+
+
 		observers = new ArrayList<ItemObserver>();
 	}
 
@@ -100,4 +102,3 @@ public class ItemPart{
 		}
 	}
 }
-

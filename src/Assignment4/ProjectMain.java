@@ -14,6 +14,8 @@ public class ProjectMain {
 
 		PartInventoryController invC2 = new PartInventoryController(inv2);
 
+		inv2.addPart(null, 0, "", "", "Sample Template");
+		
 		// views
 		PartsListView pView2 = new PartsListView(invC2, inv2, gateway);
 		pView2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
