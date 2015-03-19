@@ -17,7 +17,7 @@ public class PartView extends JFrame implements PartObserver {
 	private JTextField tfPartNum;
 	private JTextField tfPartName;
 	private JTextField tfVendor;
-
+	public static int x = 1;
 
 	private Part part;
 	private PartInventoryController invC;
@@ -43,9 +43,7 @@ public class PartView extends JFrame implements PartObserver {
 		tfPartName = new JTextField();
 		panel.add(tfPartName);
 
-
-		tfVendor = new JTextField();
-
+		tfVendor = new JTextField("Template " + x);
 
 		this.add(panel, BorderLayout.CENTER);
 
@@ -63,7 +61,7 @@ public class PartView extends JFrame implements PartObserver {
 					if (part == null) {
 						part = p;
 						part.registerObserver(PartView.this);
-						PartView.this.setTitle("Editing " + part.getPartName());
+						PartView.this.setTitle(part.getPartName() + "Details");
 					} else
 						part = p;
 				}
@@ -82,7 +80,7 @@ public class PartView extends JFrame implements PartObserver {
 
 			this.setTitle("Editing " + p.getVendor());
 		} else
-			this.setTitle("Adding new part");
+			this.setTitle("Adding New Template");
 	}
 
 	public void showError(String msg) {
